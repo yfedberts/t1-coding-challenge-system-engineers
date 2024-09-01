@@ -29,6 +29,6 @@
     },
     "outDir": "./dist"
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.js"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.js", "src/libraries/kafka/config"],
   "exclude": ["node_modules", "dist"]
 }
