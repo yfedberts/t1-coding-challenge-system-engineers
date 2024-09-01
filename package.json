@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "docker-compose up"
+    "start": "docker-compose up",
+    "dev:windows": "powershell -Command \"$env:TARGET='development'; docker-compose up\""
   }
 }
