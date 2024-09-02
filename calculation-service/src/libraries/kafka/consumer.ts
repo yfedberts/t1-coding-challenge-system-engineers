@@ -32,7 +32,6 @@ export class KafkaConsumer {
 
   start() {
     this.consumer.connect();
-    console.log('Kafka consumer is ready');
   }
 
   stop() {

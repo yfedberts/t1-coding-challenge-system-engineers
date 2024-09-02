@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express, { Application, Request, Response, NextFunction } from 'express';
 import positionsRouter from './components/positions/entry-points/api';
+import TradesKafkaConsumer from './components/positions/entry-points/message-queue';
 
 // Load environment variables from .env file
 dotenv.config();

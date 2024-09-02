@@ -6,7 +6,7 @@ import { type Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terra One Dashboard",
   description:
-    "Dashboard for Displaying Metrics of the Terra One Coding Challenge",
+    "Dashboard for Displaying Metricss of the Terra One Coding Challenge",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

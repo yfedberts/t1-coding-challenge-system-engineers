@@ -1,9 +1,9 @@
 import { KafkaConsumer } from '../../../../libraries/kafka/consumer';
 import { TradeDTO } from '../../domain/trade-dto';
-import Kafka from 'node-rdkafka';
+import { Message } from 'node-rdkafka';
 
-const consumer = new KafkaConsumer('trades', 'trade-group', (message : Kafka.Message) => {
-    throw new Error('Not implemented');
+const consumer : KafkaConsumer = new KafkaConsumer('trades', 'trade-group', (message : Message) => {
+    console.log('received', message);
 });
 
-consumer.start();
+export default consumer;

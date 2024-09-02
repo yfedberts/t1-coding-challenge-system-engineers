@@ -12,10 +12,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "node-rdkafka": "^3.1.0"
   },
   "devDependencies": {
-    "typescript": "^5.5.4",
-    "@types/node": "^22.5.0"
+    "@types/node": "^22.5.0",
+    "typescript": "^5.5.4"
   }
 }
