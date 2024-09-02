@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import express, { Application, Request, Response, NextFunction } from 'express';
 import positionsRouter from './components/positions/entry-points/api';
-import TradesKafkaConsumer from './components/positions/entry-points/message-queue';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -12,7 +11,7 @@ const createApp = (): Application => {
     app.use(express.json());
 
     app.get('/', (req: Request, res: Response) => {
-        res.send('Hello Worsld!');
+        res.send('Server is running');
     });
 
     // routes here

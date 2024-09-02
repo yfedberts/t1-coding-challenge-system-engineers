@@ -19,19 +19,8 @@ export const removeClient = (client: ServerEventsClient) => {
     }
 };
 
-export const notifyClients = () => {
-    const openPosition: number = getOpenPosition();
-    const response: ServerResponseDTO<OpenPositionDTO> = {
-        success: true,
-        data: { openPosition },
-    };
-
+export const notifyClients = (data: ServerResponseDTO<OpenPositionDTO>) => {
     clients.forEach(client => {
-        client.sendEvent(response);
+        client.sendEvent(data);
     });
-};
-
-// TODO: Implement getOpenPosition
-export const getOpenPosition = (): number => {
-    return 0;    
 };

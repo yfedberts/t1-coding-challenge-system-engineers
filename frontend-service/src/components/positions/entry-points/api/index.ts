@@ -1,12 +1,14 @@
 import { Router, Request, Response } from 'express';
-import { addClient, removeClient, notifyClients, getOpenPosition } from '../../domain/position-services';
+import { addClient, removeClient, notifyClients } from '../../domain/server-events-manager';
 import { ServerResponseDTO } from '../../domain/server-response-dto';
 import { OpenPositionDTO } from '../../domain/open-position-dto';
+import { TradeConsumerInstance } from '../message-queue';
 
 const ROUTER: Router = Router();
 
 ROUTER.get('/', (req: Request, res: Response) => {
     try {
+        // Establish SSE connection
         const headers = {
             'Content-Type': 'text/event-stream',
             'Connection': 'keep-alive',
@@ -17,8 +19,7 @@ ROUTER.get('/', (req: Request, res: Response) => {
 
         const client = addClient(res);
 
-        // Send initial open position to client
-        const openPosition: number = getOpenPosition();
+        const openPosition: number = TradeConsumerInstance.getOpenPosition();
         const response: ServerResponseDTO<OpenPositionDTO> = {
             success: true,
             data: { openPosition },
@@ -44,7 +45,6 @@ ROUTER.get('/', (req: Request, res: Response) => {
             message: errorMessage,
         };
 
-        // TODO: Implement a better way to manage http status code later / errors later
         res.status(500).json(errorResponse);
     }
 });

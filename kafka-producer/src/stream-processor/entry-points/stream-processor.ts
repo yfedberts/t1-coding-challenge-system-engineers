@@ -11,7 +11,7 @@ export const startStreamProcessor = async (): Promise<void> => {
     }
 
     const reader = response.body.getReader();
-    let partialMessage = ''; // Buffer to store incomplete JSON strings
+    let partialMessage = ''; 
 
     const stream = new ReadableStream<Uint8Array>({
       start(controller) {
@@ -44,9 +44,8 @@ export const startStreamProcessor = async (): Promise<void> => {
       }
 
       const decodedValue = decoder.decode(value, { stream: true });
-      partialMessage += decodedValue; // Append the new chunk to the buffer
+      partialMessage += decodedValue; 
 
-      // Split the buffer by newline or closing brace (end of JSON object)
       const messages = partialMessage.split('\n').filter(Boolean);
 
       for (let i = 0; i < messages.length; i++) {
@@ -56,15 +55,14 @@ export const startStreamProcessor = async (): Promise<void> => {
           if (!message) {
             continue;
           }
-          
-          // Remove "data: " prefix if present
-          if (message.startsWith('data: ')) {
-            message = message.slice(6); // Remove the "data: " part
+
+          if (message.startsWith('data:')) {
+            message = message.replace('data:', '')
           }
 
           // Check if the message is complete (ends with a closing brace)
           if (message.endsWith('}')) {
-            processStreamMessage(message); // Process the complete JSON message
+            processStreamMessage(message.trim()); // Process the complete JSON message
           } else {
             // If the message isn't complete, leave it in the buffer
             partialMessage = message;

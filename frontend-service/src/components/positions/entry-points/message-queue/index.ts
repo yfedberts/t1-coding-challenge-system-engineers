@@ -1,9 +1,4 @@
-import { KafkaConsumer } from '../../../../libraries/kafka/consumer';
-import { TradeDTO } from '../../domain/trade-dto';
-import { Message } from 'node-rdkafka';
+import { TradeConsumer } from "../../../../libraries/kafka/trade-consumer";
 
-const consumer : KafkaConsumer = new KafkaConsumer('trades', 'trade-group', (message : Message) => {
-    console.log('received', message);
-});
-
-export default consumer;
+export const TradeConsumerInstance = new TradeConsumer('trades', 'trade-group');
+export default TradeConsumerInstance;

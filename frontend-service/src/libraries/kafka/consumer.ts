@@ -30,6 +30,16 @@ export class KafkaConsumer {
     });
   }
 
+  protected ensureStarted() {
+    if (!this.consumer.isConnected()) {
+      throw new Error('Consumer is not started');
+    }
+  }
+
+  isStarted() {
+    return this.consumer.isConnected();
+  }
+
   start() {
     this.consumer.connect();
     console.log('Kafka consumer is ready');
